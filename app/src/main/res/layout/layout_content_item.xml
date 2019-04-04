@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView android:id="@+id/list_item_title_id" android:layout_width="match_parent"
+              android:layout_height="wrap_content" android:text="高的从的色彩的" android:textColor="#ffffff"
+              android:background="#000000"
+              android:fontFamily="sans-serif"
+              android:paddingTop="2dp"
+              android:paddingBottom="2dp"
+              android:letterSpacing="0.1"
+              android:paddingLeft="8dp"
+              android:textSize="16sp"></TextView>
+
+    <android.support.v7.widget.RecyclerView android:id="@+id/list_item_recyclerview_id"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="128dp"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
