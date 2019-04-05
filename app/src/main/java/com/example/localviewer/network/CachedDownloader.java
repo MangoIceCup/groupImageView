@@ -82,4 +82,7 @@ public class CachedDownloader implements Callable<File> {
         }
     }
 
+    public void deleteCachedFile(){
+            getCachedFile().delete();
+    }
 }

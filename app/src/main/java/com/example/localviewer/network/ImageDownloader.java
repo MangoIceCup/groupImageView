@@ -3,9 +3,12 @@ package com.example.localviewer.network;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.File;
+
+import static android.content.ContentValues.TAG;
 
 public class ImageDownloader extends CachedDownloader {
     Handler handler;
@@ -19,6 +22,7 @@ public class ImageDownloader extends CachedDownloader {
     @Override
     public File call() throws Exception {
         final File file= super.call();
+        Log.e(TAG, "Image Saved TO: "+file );
         handler.post(new Runnable() {
             @Override
             public void run() {

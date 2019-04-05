@@ -25,6 +25,7 @@ public class InfoDownloader extends CachedDownloader {
     @Override
     public File call() throws Exception {
         final File file= super.call();
+        Thread.sleep(2000);
         handler.post(new Runnable() {
             @Override
             public void run() {

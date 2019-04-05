@@ -12,6 +12,9 @@ import com.example.localviewer.serverRalated.Zone;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static android.content.ContentValues.TAG;
 
@@ -25,10 +28,10 @@ public class MainActivity extends Activity {
         rootView=findViewById(R.id.main_activity_recycler_view_id);
         Zone zone=null;
         try {
-            zone=new Gson().fromJson(new String(new LocalStorage(MainActivity.this).readCacheFile("info.json")),Zone.class);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Log.e(TAG, "onCreate: ", e);
+            String file=getIntent().getStringExtra("file.json.info");
+            zone=new Gson().fromJson(new String(Files.readAllBytes(Paths.get(file))),Zone.class);
+        } catch (IOException e) {
+            Log.e(TAG, "onCreate: 读取图片数据库失败", e);
             finish();
         }
         originHandler =new Handler();

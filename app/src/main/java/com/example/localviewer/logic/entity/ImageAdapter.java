@@ -2,20 +2,16 @@ package com.example.localviewer.logic.entity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import com.example.localviewer.DetailActivity;
 import com.example.localviewer.MyImageView;
-import com.example.localviewer.R;
-import com.example.localviewer.network.Downloader;
+import com.example.localviewer.network.CachedDownloader;
+import com.example.localviewer.network.ImageDownloader;
 import com.example.localviewer.serverRalated.ImageAlbum;
 
 
@@ -38,7 +34,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
         imageView.setMaxHeight(360);
         imageView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ImageViewHolder imageViewHolder = new ImageViewHolder(imageView);
-        //imageView.setImageResource(R.drawable.prefix_9062820c0378edcd000);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -60,20 +55,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
         imageViewHolder.url = imageAlbum.images[i].url;
         imageViewHolder.imageView.setUrl(imageViewHolder.url);
         final Handler handler = new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final Bitmap bitmap = Downloader.bitmapFromUrl(imageViewHolder.url, context);
-
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageViewHolder.imageView.setImageBitmap(bitmap);
-                    }
-                });
-            }
-        }).start();
-
+        CachedDownloader.submit(new ImageDownloader(context,imageViewHolder.imageView,handler,imageViewHolder.url,imageAlbum.images[i].md5));
     }
 
     @Override
