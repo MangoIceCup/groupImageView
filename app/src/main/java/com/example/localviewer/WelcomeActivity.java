@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import com.example.localviewer.localstorage.LocalStorage;
 import com.example.localviewer.serverRalated.Zone;
 import com.google.gson.Gson;
@@ -35,11 +33,10 @@ public class WelcomeActivity extends Activity {
             public void run() {
                 Zone zone=null;
                 try {
-                    zone=InfoJson.get();
+                    zone=InfoJson.get(WelcomeActivity.this);
                 } catch (Exception e) {
                     Log.d(TAG, "run: 下载图片专辑列表失败",e);
-                    Toast.makeText(WelcomeActivity.this,"连接服务器失败",Toast.LENGTH_LONG).show();
-                    finish();
+                    //finish();
                 }
                 Message message= Message.obtain();
                 handler.post(new Runnable() {
@@ -49,7 +46,7 @@ public class WelcomeActivity extends Activity {
                     }
                 });
                 try {
-                    new LocalStorage(WelcomeActivity.this).saveCacheFile("info.json",new Gson().toJson(zone).getBytes(Charset.defaultCharset()));
+                    new LocalStorage(WelcomeActivity.this).saveInfoJsonCacheFile(new Gson().toJson(zone).getBytes(Charset.defaultCharset()));
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "run: 内存不足", e);

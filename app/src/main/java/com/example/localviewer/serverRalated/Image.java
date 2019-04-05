@@ -1,5 +1,6 @@
 package com.example.localviewer.serverRalated;
 
 public class Image {
-    String url;
+   public String url;
+   public String md5;
 }

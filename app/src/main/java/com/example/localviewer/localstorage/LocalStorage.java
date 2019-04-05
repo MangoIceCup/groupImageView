@@ -14,11 +14,11 @@ public class LocalStorage {
         this.context = context;
     }
 
-    public void saveCacheFile(String file, byte[] bytes) throws IOException {
+    public  void saveInfoJsonCacheFile(byte[] bytes) throws IOException {
         File cache = context.getCacheDir();
-        cache = cache.toPath().resolve("./" + file).toFile();
+        cache = cache.toPath().resolve("./info.json").toFile();
         if (cache.exists()) {
-            cache.delete();
+            return;
         }
 
         cache.createNewFile();
@@ -29,7 +29,7 @@ public class LocalStorage {
 
     }
 
-    public byte[] readCacheFile(String file) throws FileNotFoundException {
+    public  byte[] readCacheFile(String file) throws FileNotFoundException {
         File cache = context.getCacheDir();
         cache = cache.toPath().resolve("./" + file).toFile();
         if (cache.exists()) {
@@ -40,7 +40,7 @@ public class LocalStorage {
         }
     }
 
-    private byte[] readAllBytes(InputStream inputStream) {
+    private  byte[] readAllBytes(InputStream inputStream) {
         byte[] buffer = new byte[64];
         try {
             try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
@@ -56,4 +56,5 @@ public class LocalStorage {
         }
         return null;
     }
+
 }

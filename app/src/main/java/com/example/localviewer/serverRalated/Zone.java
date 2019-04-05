@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class Zone {
-    ImageAlbum [] imageAlbums;
+   public ImageAlbum [] imageAlbums;
     public static Zone getInstance(){
         Zone zone = new Zone();
         Path zonePath = Paths.get("/home/edward/uncensored/");

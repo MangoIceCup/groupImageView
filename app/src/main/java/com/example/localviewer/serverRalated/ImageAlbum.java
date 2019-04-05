@@ -1,9 +1,9 @@
 package com.example.localviewer.serverRalated;
 
 public class ImageAlbum {
-    int id;
-    int countOfImage;
-    String name;
-    Image [] images;
+    public  int id;
+    public  int countOfImage;
+    public  String name;
+    public  Image [] images;
 
 }
