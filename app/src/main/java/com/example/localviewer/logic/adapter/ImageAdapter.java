@@ -12,7 +12,7 @@ import com.example.localviewer.DetailActivity;
 import com.example.localviewer.MyImageView;
 import com.example.localviewer.network.CachedDownloader;
 import com.example.localviewer.network.ImageDownloader;
-import com.example.localviewer.serverRalated.ImageAlbum;
+import com.example.localviewer.entity.ImageAlbum;
 
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
@@ -39,9 +39,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
             public void onClick(final View v) {
                 if(v instanceof MyImageView){
                     final String url= ((MyImageView) v).getUrl();
+                    String md5=((MyImageView) v).getMd5();
                     Intent intent=new Intent(context, DetailActivity.class);
                     Bundle bundle=new Bundle();
-                    bundle.putString("zzj_url",url);
+                    bundle.putString("image.url",url);
+                    bundle.putString("image.md5",md5);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
@@ -52,10 +54,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ImageViewHolder imageViewHolder, int i) {
-        imageViewHolder.url = imageAlbum.images[i].url;
-        imageViewHolder.imageView.setUrl(imageViewHolder.url);
+        String url=imageAlbum.images[i].url;
+        MyImageView myImageView=(MyImageView)imageViewHolder.itemView;
+        myImageView.setUrl(url);
+        myImageView.setMd5(imageAlbum.images[i].md5);
         final Handler handler = new Handler();
-        CachedDownloader.submit(new ImageDownloader(context,imageViewHolder.imageView,handler,imageViewHolder.url,imageAlbum.images[i].md5));
+        CachedDownloader.submit(new ImageDownloader(context,myImageView,handler,url,imageAlbum.images[i].md5));
     }
 
     @Override

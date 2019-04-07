@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.localviewer.R;
-import com.example.localviewer.serverRalated.Zone;
+import com.example.localviewer.entity.Zone;
 
 import static android.content.ContentValues.TAG;
 
