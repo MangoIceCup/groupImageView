@@ -1,4 +1,4 @@
-package com.example.localviewer.serverRalated;
+package com.example.localviewer.entity;
 
 import java.io.File;
 import java.nio.file.Path;

@@ -1,4 +1,4 @@
-package com.example.localviewer.serverRalated;
+package com.example.localviewer.entity;
 
 public class Image {
    public String url;

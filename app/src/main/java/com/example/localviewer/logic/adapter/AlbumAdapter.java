@@ -1,4 +1,4 @@
-package com.example.localviewer.logic.entity;
+package com.example.localviewer.logic.adapter;
 
 import android.content.Context;
 import android.os.Handler;

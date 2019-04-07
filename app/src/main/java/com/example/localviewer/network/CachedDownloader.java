@@ -2,10 +2,7 @@ package com.example.localviewer.network;
 
 import android.content.Context;
 import android.os.Environment;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -21,7 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * A Generic Downloader , first find in cache by identity , return  bytes
  */
 public class CachedDownloader implements Callable<File> {
-    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(5);
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(20);
     @SuppressWarnings("uncheked")
     public static void submit(Callable callable){
         executorService.submit(callable);

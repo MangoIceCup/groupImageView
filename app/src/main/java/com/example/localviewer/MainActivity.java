@@ -6,12 +6,10 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import com.example.localviewer.localstorage.LocalStorage;
-import com.example.localviewer.logic.entity.AlbumAdapter;
-import com.example.localviewer.serverRalated.Zone;
+import com.example.localviewer.logic.adapter.AlbumAdapter;
+import com.example.localviewer.entity.Zone;
 import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

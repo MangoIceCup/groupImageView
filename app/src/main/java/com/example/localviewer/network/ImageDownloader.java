@@ -22,7 +22,6 @@ public class ImageDownloader extends CachedDownloader {
     @Override
     public File call() throws Exception {
         final File file= super.call();
-        Log.e(TAG, "Image Saved TO: "+file );
         handler.post(new Runnable() {
             @Override
             public void run() {
